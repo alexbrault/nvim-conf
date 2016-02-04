@@ -114,8 +114,8 @@ if !exists(":DiffOrig")
 		  \ | wincmd p | diffthis
 endif
 
-set backupdir=~/.vim/tmp,.
-set directory=~/.vim/tmp,.
+set backupdir=~/.config/nvim/tmp,~/.vim/tmp,.
+set directory=~/.config/nvim/tmp,~/.vim/tmp,.
 
 let g:xml_syntax_folding=1
 au FileType xml setlocal foldmethod=syntax
@@ -179,7 +179,8 @@ let g:EasyGrepRecursive=1
 
 nnoremap # *
 nnoremap * #
-colo PaperColor
+colo materialbox
+set bg=dark
 
 autocmd! CursorMoved,CursorMovedI *.md if getline(".") =~# "^\|" | setlocal tw=0 | else | setlocal tw=80 | endif
 autocmd! BufEnter **/en_US/**/*.md silent! setlocal spell spelllang=en_CA
