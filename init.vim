@@ -207,3 +207,6 @@ if has('nvim')
 
   command! -nargs=+ Arc exe 'tabe term://.//arc\ '.fnameescape('<args>') <bar> startinsert
 endif
+
+cmap w!! w !sudo tee >/dev/null %
+map Y y$
