@@ -182,8 +182,8 @@ nnoremap * #
 colo materialbox
 set bg=dark
 
-autocmd! CursorMoved,CursorMovedI *.md if getline(".") =~# "^\|" | setlocal tw=0 | else | setlocal tw=80 | endif
-autocmd! BufEnter **/en_US/**/*.md silent! setlocal spell spelllang=en_CA
+autocmd! CursorMoved,CursorMovedI *.md if getline(".") =~# "^\s*\|" | setlocal tw=0 | else | setlocal tw=80 | endif
+autocmd! BufEnter **/en_US/**/*.md silent! setlocal spell spelllang=en_US
 autocmd! BufEnter **/fr_CA/**/*.md silent! setlocal spell spelllang=fr_CA
 
 " Unbind the cursor keys in insert, normal and visual modes.
@@ -207,6 +207,8 @@ if has('nvim')
 
   command! -nargs=+ Arc exe 'tabe term://.//arc\ '.fnameescape('<args>') <bar> startinsert
 endif
+
+let g:ycm_auto_trigger=0
 
 cmap w!! w !sudo tee >/dev/null %
 map Y y$
