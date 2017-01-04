@@ -194,15 +194,14 @@ for prefix in ['i', 'n', 'v']
 endfor
 
 if has('nvim')
-  function! MoveToTabOnLeft()
-      let curtab = tabpagenr()
-      let tabonleft = curtab - 1
+  function! MoveToTabOnLeft(afile)
+      let tabonleft = a:afile - 1
       exe tabonleft."tabnext"
   endfunction
 
   augroup tabonleft
       au!
-      au TabClosed * call MoveToTabOnLeft()
+      au TabClosed * call MoveToTabOnLeft(expand('<afile>'))
   augroup END
 
   command! -nargs=+ Arc exe 'tabe term://.//arc\ '.fnameescape('<args>') <bar> startinsert
