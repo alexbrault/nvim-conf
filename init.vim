@@ -137,10 +137,10 @@ endif
 autocmd FileType javascript autocmd BufWritePre <buffer> :%s/\s\+$//e
 
 au BufEnter new-commit setlocal filetype=gitcommit
-au CursorHoldI * stopinser
-au InsertEnter * let updaterestore=&updatetime | set updatetime=5000
-au InsertLeave * let &updatetime=updaterestore
-au FocusLost * stopinser
+" au CursorHoldI * stopinser
+" au InsertEnter * let updaterestore=&updatetime | set updatetime=5000
+" au InsertLeave * let &updatetime=updaterestore
+" au FocusLost * stopinser
 
 let g:pymode_rope = 0
 command! Gsu Git submodule update
@@ -207,7 +207,7 @@ if has('nvim')
   command! -nargs=+ Arc exe 'tabe term://.//arc\ '.fnameescape('<args>') <bar> startinsert
 endif
 
-let g:ycm_auto_trigger=0
+" let g:ycm_auto_trigger=0
 
 cmap w!! w !sudo tee >/dev/null %
 map Y y$
