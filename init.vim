@@ -128,7 +128,6 @@ if has('statusline')
 	set statusline+=%w%h%m%r " Options
 	set statusline+=%{fugitive#statusline()} "  Git Hotness
 	set statusline+=%#warningmsg#
-	set statusline+=%{SyntasticStatuslineFlag()}
 	set statusline+=%*
 	let g:syntastic_enable_signs=1
 	set statusline+=%=%-14.(%l,%c%V%)\ %p%%  " Right aligned file nav info
@@ -194,20 +193,12 @@ for prefix in ['i', 'n', 'v']
 endfor
 
 if has('nvim')
-  function! MoveToTabOnLeft(afile)
-      let tabonleft = a:afile - 1
-      exe tabonleft."tabnext"
-  endfunction
-
-  augroup tabonleft
-      au!
-      au TabClosed * call MoveToTabOnLeft(expand('<afile>'))
-  augroup END
-
-  command! -nargs=+ Arc exe 'tabe term://.//arc\ '.fnameescape('<args>') <bar> startinsert
+  command! -nargs=+ Arc exe '-tabe term://.//arc\ '.fnameescape('<args>') <bar> startinsert
 endif
 
 " let g:ycm_auto_trigger=0
 
 cmap w!! w !sudo tee >/dev/null %
 map Y y$
+
+set wildignore=*.pyc
