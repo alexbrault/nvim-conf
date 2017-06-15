@@ -202,3 +202,4 @@ cmap w!! w !sudo tee >/dev/null %
 map Y y$
 
 set wildignore=*.pyc
+set termguicolors
