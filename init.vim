@@ -1,4 +1,15 @@
+let g:python3_host_prog=trim(system('which python3')) " '/home/abrault/.venv/py36/bin/python'
+" let g:pymode_debug=1
+let s:pythree = system('python --version 2>&1 | grep -i "Python 3"')
+if empty(s:pythree)
+  let g:pymode_python='python'
+else
+  let g:pymode_python='python3'
+  let g:pymode_breakpoint_cmd = 'breakpoint() # XXXX - Breakpoint!!!'
+endif
 execute pathogen#infect()
+" let g:rainbow_active = 1
+let g:EditorConfig_exclude_patterns = ['fugitive://.*']
 
 set autoread
 if !has('nvim')
@@ -10,9 +21,12 @@ set wrap
 set number
 set linebreak
 set nolist  " list disables linebreak
-let g:pymode_lint_checkers=['pyflakes', 'pep8']
+let g:pymode_lint_checkers=['pyflakes', 'pycodestyle']
+let g:pymode_lint_ignore=['C901']
 let g:pymode_options_max_line_length = 79
-let g:EasyGrepFilesToExclude = '*.swp,*~,*.pyc'
+let g:pymode_folding = 1
+let g:EasyGrepFilesToExclude = '*.swp,*~,*.pyc,node_modules'
+let g:EasyGrepCommand = 1
 
 " An example for a vimrc file.
 "
@@ -188,7 +202,7 @@ autocmd! BufEnter **/fr_CA/**/*.md silent! setlocal spell spelllang=fr_CA
 " Unbind the cursor keys in insert, normal and visual modes.
 for prefix in ['i', 'n', 'v']
   for key in ['<Up>', '<Down>', '<Left>', '<Right>']
-    exe prefix . "noremap " . key . " <Nop>"
+    " exe prefix . "noremap " . key . " <Nop>"
   endfor
 endfor
 
@@ -203,3 +217,9 @@ map Y y$
 
 set wildignore=*.pyc
 set termguicolors
+autocmd BufEnter term://* startinsert
+autocmd BufLeave term://* stopinsert
+
+let $EDITOR = "nvr -cc split --remote-wait-silent +'setlocal bufhidden=wipe'"
+
+tnoremap <Esc> <C-\><C-n>

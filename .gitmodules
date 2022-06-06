@@ -40,3 +40,9 @@
 [submodule "bundle/vim-indent-object"]
 	path = bundle/vim-indent-object
 	url = https://github.com/michaeljsmith/vim-indent-object.git
+[submodule "bundle/editorconfig-vim"]
+	path = bundle/editorconfig-vim
+	url = https://github.com/editorconfig/editorconfig-vim.git
+[submodule "bundle/vim-rainbow"]
+	path = bundle/vim-rainbow
+	url = https://github.com/frazrepo/vim-rainbow.git
